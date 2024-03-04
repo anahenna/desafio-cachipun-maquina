@@ -1,29 +1,34 @@
 
+const randomNum = generateRandomNumber();
+let opcionMaquina = asignaOpcionMaquina(randomNum);
 
-function obtenerEleccionMaquina() {
-    let eleccionMaquinaN = Math.floor(Math.random() * 3)
-    if (
-        eleccionMaquinaN = 0
-    ) {
-        return "piedra"
-    } else if (eleccionMaquinaN = 1
-    ) {
-        return "papel"
-    } else if (eleccionMaquinaN = 2
-    ) {
-        return "tijera"
-    }
-    return eleccionMaquinaN;
+function generateRandomNumber() {
+    return Math.floor(Math.random() * 3);
 }
 
-function determinarGanador(eleccionJugador, eleccionMaquina) {
+function asignaOpcionMaquina(randomNum) {
+    if (randomNum === 0) {
+        return "piedra";
+    } else if (randomNum === 1) {
+        return "papel";
+    } else if (randomNum === 2) {
+        return "tijera";
+    } else {
+        return "Invalid number";
+    }
+}
+
+console.log(randomNum)
+console.log(opcionMaquina)
+
+function determinarGanador(eleccionJugador, opcionMaquina) {
     if (
-        (eleccionJugador === "piedra" && eleccionMaquina === "tijera") ||
-        (eleccionJugador === "papel" && eleccionMaquina === "piedra") ||
-        (eleccionJugador === "tijera" && eleccionMaquina === "papel")
+        (eleccionJugador === "piedra" && opcionMaquina === "tijera") ||
+        (eleccionJugador === "papel" && opcionMaquina === "piedra") ||
+        (eleccionJugador === "tijera" && opcionMaquina === "papel")
     ) {
         return "¡¡Ganaste!!";
-    } else if (eleccionJugador === eleccionMaquina) {
+    } else if (eleccionJugador === opcionMaquina) {
         return "Empate";
     } else {
         return "¡Perdiste!"
@@ -39,6 +44,7 @@ function jugar() {
         alert("Por favor, ingrese un número válido de rondas");
         return;
     }
+
     for (let i = 1; i <= numRondas; i++) {
         const eleccionJugador = prompt("Elige: piedra, papel o tijera:").toLowerCase();
 
@@ -47,10 +53,10 @@ function jugar() {
             continue;
         }
 
-        const eleccionMaquina = obtenerEleccionMaquina();
-        const resultado = determinarGanador(eleccionJugador, eleccionMaquina);
-        alert(`Ronda ${i}: Tú elegiste ${eleccionJugador}, la máquina eligió ${eleccionMaquina}. ${resultado}`);
+        const opcionMaquina = asignaOpcionMaquina(generateRandomNumber());
 
+        const resultado = determinarGanador(eleccionJugador, opcionMaquina);
+        alert(`Ronda ${i}: Tú elegiste ${eleccionJugador}, la máquina eligió ${opcionMaquina}. ${resultado}`);
     }
 }
 
